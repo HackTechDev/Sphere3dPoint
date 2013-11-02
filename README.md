@@ -1,6 +1,19 @@
 Sphere 3d point rotation
 ========================
 
+Keys:  
+
+A = Disable x rotation  
+Z = Enable x rotation  
+
+Q = Disable y rotation  
+S = Enable y rotation  
+
+W = Disable z rotation  
+X = Enable z rotation  
+
+Links:  
+
 Display the sphere:   
 
 http://codentronix.com/2011/04/20/simulation-of-3d-point-rotation-with-python-and-pygame/

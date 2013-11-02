@@ -60,7 +60,6 @@ def generateSphere3dPoints(n):
 
     return vertices
 
-
 class Point3D:
     def __init__(self, x = 0, y = 0, z = 0):
         self.x, self.y, self.z = float(x), float(y), float(z)
@@ -113,13 +112,37 @@ class Simulation:
         self.angleX, self.angleY, self.angleZ = 0, 0, 0
  
     def run(self):
+
+        angleX = 1
+        angleY = 1
+        angleZ = 1
+
         while 1:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
- 
+                elif event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_a:
+                        print "angleX: 0"
+                        angleX = 0
+                    if event.key == pygame.K_z:
+                        print "angleX: 1"
+                        angleX = 1
+                    elif event.key == pygame.K_q:
+                        print "angleY: 0"
+                        angleY = 0
+                    elif event.key == pygame.K_s:
+                        print "angleY: 1"
+                        angleY = 1
+                    elif event.key == pygame.K_w:
+                        print "angleZ: 0"
+                        angleZ = 0
+                    elif event.key == pygame.K_x:
+                        print "angleZ: 1"
+                        angleZ = 1
+
             self.clock.tick(50)
-            self.screen.fill((0,0,0))
+            self.screen.fill((0, 0, 0))
  
             for v in self.vertices:
                 # Rotate the point around X axis, then around Y axis, and finally around Z axis.
@@ -127,12 +150,12 @@ class Simulation:
                 # Transform the point from 3D to 2D
                 p = r.project(self.screen.get_width(), self.screen.get_height(), 256, 4)
                 x, y = int(p.x), int(p.y)
-                self.screen.fill((255,255,255),(x,y,2,2))
+                self.screen.fill((255, 255, 255), (x, y, 2, 2))
  
-            self.angleX += 1
-            self.angleY += 1
-            self.angleZ += 1
- 
+            self.angleX += angleX
+            self.angleY += angleY
+            self.angleZ += angleZ
+
             pygame.display.flip()
  
 if __name__ == "__main__":
