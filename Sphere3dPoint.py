@@ -115,41 +115,58 @@ class Simulation:
  
     def run(self):
 
-        angleX = 1
-        angleY = 1
-        angleZ = 1
+        angleX = 0
+        angleY = 0
+        angleZ = 0
+
+        font = pygame.font.Font(None, 25)
 
         while 1:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
                 elif event.type == pygame.KEYDOWN:
+
+                    if event.key == pygame.K_p:
+                        sys.exit()
                     if event.key == pygame.K_a:
-                        print "angleX: 0"
-                        angleX = 0
+                        #print "angleX: -1"
+                        angleX = -1
                     if event.key == pygame.K_z:
-                        print "angleX: 1"
+                        #print "angleX: 0"
+                        angleX = 0
+                    if event.key == pygame.K_e:
+                        #print "angleX: +1"
                         angleX = 1
+
                     elif event.key == pygame.K_q:
-                        print "angleY: 0"
-                        angleY = 0
+                        #print "angleY: -1"
+                        angleY = -1
                     elif event.key == pygame.K_s:
-                        print "angleY: 1"
+                        #print "angleY: 0"
+                        angleY = 0
+                    elif event.key == pygame.K_d:
+                        #print "angleY: +1"
                         angleY = 1
+
                     elif event.key == pygame.K_w:
-                        print "angleZ: 0"
-                        angleZ = 0
+                        #print "angleZ: -1"
+                        angleZ = -1
                     elif event.key == pygame.K_x:
-                        print "angleZ: 1"
+                        #print "angleZ: 0"
+                        angleZ = 0
+                    elif event.key == pygame.K_c:
+                        #print "angleZ: +1"
                         angleZ = 1
+
                     elif event.key == pygame.K_DOWN:
-                        print "3d points: " + str(self.numberVertice)
+                        #print "3d points: " + str(self.numberVertice)
                         self.numberVertice -= 10
                         if self.numberVertice <= 0:
                             self.numberVertice = 10
                         self.vertices = generateSphere3dPoints(self.numberVertice)
                     elif event.key == pygame.K_UP:
-                        print "3d points: " + str(self.numberVertice)
+                        #print "3d points: " + str(self.numberVertice)
                         self.numberVertice += 10
                         self.vertices = generateSphere3dPoints(self.numberVertice)
 
@@ -167,6 +184,13 @@ class Simulation:
             self.angleX += angleX
             self.angleY += angleY
             self.angleZ += angleZ
+
+
+            rotationText = font.render("Angle rotation direction: x=" + str(angleX) + " y=" + str(angleY) + " z=" + str(angleZ), True, ( 255, 0, 0))
+            self.screen.blit(rotationText, [10, 10])
+
+            pointText = font.render("# of 3d points: " + str(self.numberVertice), True, ( 255, 0, 0))
+            self.screen.blit(pointText, [10, 30])
 
             pygame.display.flip()
  
