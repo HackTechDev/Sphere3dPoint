@@ -1,7 +1,7 @@
 import sys, math
 
 # Number of points
-n = 50 
+n = 100 
 
 # Index
 k = 0.0
@@ -41,13 +41,7 @@ for k in range(2, n):
         print "Error"
         sys.exit() 
 
-    try:
-        phi = phi1 + 3.6 / ( math.sqrt ( n * ( 1 - h * h ) ) )
-    except ZeroDivisionError:
-        phi = phi1    
-
     phi = phi1 + 3.6 / ( math.sqrt ( n * ( 1 - h * h ) ) )
-
 
     phi = math.fmod ( phi, 2.0 * math.pi )
 
