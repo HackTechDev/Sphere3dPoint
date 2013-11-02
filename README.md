@@ -23,7 +23,9 @@ Up = Add 10 3d points
 Down = Remove 10 3d points  
   
 p = Quit  
-  
+   
+n = Enable or disable the view of backface
+ 
 Links:  
 
 Display the sphere:   

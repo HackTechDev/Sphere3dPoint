@@ -3,7 +3,7 @@ import sys, math, pygame
 # Generate all points of a sphere
 # n = Number of points
 #
-# Ellipsoid axis lengths
+# Ellipsoid axis lengths : r1, r2, r3
 
 def generateSphere3dPoints(n, r1, r2, r3):
     
@@ -34,7 +34,7 @@ def generateSphere3dPoints(n, r1, r2, r3):
         
         theta = math.acos ( h )
 
-        if theta < 0.0 or  theta > math.pi: 
+        if theta < 0.0 or theta > math.pi: 
             print "Error"
             sys.exit() 
 
@@ -103,7 +103,7 @@ class Simulation:
  
         self.clock = pygame.time.Clock()
     
-        self.numberVertice = 10 
+        self.numberVertice = 300 
 
         self.r1 = 2.0
         self.r2 = 2.0
@@ -119,7 +119,11 @@ class Simulation:
         angleY = 0
         angleZ = 0
 
+        sizePoint = 4
+
         font = pygame.font.Font(None, 25)
+
+        backFace = False
 
         while 1:
             for event in pygame.event.get():
@@ -186,6 +190,12 @@ class Simulation:
                         self.numberVertice += 10
                         self.vertices = generateSphere3dPoints(self.numberVertice, self.r1, self.r2, self.r3)
 
+                    elif event.key == pygame.K_n:
+                        if backFace == True:
+                            backFace = False
+                        else:
+                            backFace = True
+
             self.clock.tick(50)
             self.screen.fill((0, 0, 0))
  
@@ -195,7 +205,15 @@ class Simulation:
                 # Transform the point from 3D to 2D
                 p = r.project(self.screen.get_width(), self.screen.get_height(), 256, 4)
                 x, y = int(p.x), int(p.y)
-                self.screen.fill((255, 255, 255), (x, y, 2, 2))
+
+                # -0.75 is the limit behind the sphere
+                if r.z < -0.75:
+                    self.screen.fill((255, 0, 0), (x, y, sizePoint, sizePoint))
+                else:
+                    if backFace == True:
+                        self.screen.fill((0, 0, 0), (x, y, sizePoint, sizePoint))
+                    else:
+                        self.screen.fill((255, 255, 255), (x, y, sizePoint, sizePoint))
  
             self.angleX += angleX
             self.angleY += angleY
@@ -204,10 +222,10 @@ class Simulation:
             sizeText = font.render("Size sphere: x=" + str(self.r1) + " y=" + str(self.r2) + " z=" + str(self.r3), True, ( 255, 0, 0))
             self.screen.blit(sizeText, [10, 10])
 
-            rotationText = font.render("Angle rotation direction: x=" + str(angleX) + " y=" + str(angleY) + " z=" + str(angleZ), True, ( 255, 0, 0))
+            rotationText = font.render("Angle rotation direction: x=" + str(angleX) + " y=" + str(angleY) + " z=" + str(angleZ), True, ( 0, 255, 0))
             self.screen.blit(rotationText, [10, 30])
 
-            pointText = font.render("# of 3d points: " + str(self.numberVertice), True, ( 255, 0, 0))
+            pointText = font.render("# of 3d points: " + str(self.numberVertice), True, ( 0, 0, 255))
             self.screen.blit(pointText, [10, 50])
 
             pygame.display.flip()
