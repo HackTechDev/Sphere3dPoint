@@ -12,7 +12,7 @@ S = Enable y rotation
 W = Disable z rotation  
 X = Enable z rotation  
 
-Up = Add 10 3d points
+Up = Add 10 3d points  
 Down = Remove 10 3d points
 
 Links:  
