@@ -2,8 +2,10 @@ import sys, math, pygame
 
 # Generate all points of a sphere
 # n = Number of points
+#
+# Ellipsoid axis lengths
 
-def generateSphere3dPoints(n):
+def generateSphere3dPoints(n, r1, r2, r3):
     
     vertices = []
 
@@ -23,13 +25,7 @@ def generateSphere3dPoints(n):
     # True radius
     r = 2.0  
 
-    # ellipsoid axis lengths
-    r1 = 0.0
-    r2 = 0.0
-    r3 = 0.0
-
     r = R
-    r1 = r2 = r3 = r
 
     vertices.append(Point3D(0.0, 0.0, -1.0 * r3))
 
@@ -109,7 +105,11 @@ class Simulation:
     
         self.numberVertice = 10 
 
-        self.vertices = generateSphere3dPoints(self.numberVertice)
+        self.r1 = 2.0
+        self.r2 = 2.0
+        self.r3 = 2.0
+
+        self.vertices = generateSphere3dPoints(self.numberVertice, self.r1, self.r2, self.r3)
 
         self.angleX, self.angleY, self.angleZ = 0, 0, 0
  
@@ -164,11 +164,11 @@ class Simulation:
                         self.numberVertice -= 10
                         if self.numberVertice <= 0:
                             self.numberVertice = 10
-                        self.vertices = generateSphere3dPoints(self.numberVertice)
+                        self.vertices = generateSphere3dPoints(self.numberVertice, self.r1, self.r2, self.r3)
                     elif event.key == pygame.K_UP:
                         #print "3d points: " + str(self.numberVertice)
                         self.numberVertice += 10
-                        self.vertices = generateSphere3dPoints(self.numberVertice)
+                        self.vertices = generateSphere3dPoints(self.numberVertice, self.r1, self.r2, self.r3)
 
             self.clock.tick(50)
             self.screen.fill((0, 0, 0))
