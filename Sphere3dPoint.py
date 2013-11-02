@@ -130,43 +130,59 @@ class Simulation:
                     if event.key == pygame.K_p:
                         sys.exit()
                     if event.key == pygame.K_a:
-                        #print "angleX: -1"
                         angleX = -1
                     if event.key == pygame.K_z:
-                        #print "angleX: 0"
                         angleX = 0
                     if event.key == pygame.K_e:
-                        #print "angleX: +1"
                         angleX = 1
 
                     elif event.key == pygame.K_q:
-                        #print "angleY: -1"
                         angleY = -1
                     elif event.key == pygame.K_s:
-                        #print "angleY: 0"
                         angleY = 0
                     elif event.key == pygame.K_d:
-                        #print "angleY: +1"
                         angleY = 1
 
                     elif event.key == pygame.K_w:
-                        #print "angleZ: -1"
                         angleZ = -1
                     elif event.key == pygame.K_x:
-                        #print "angleZ: 0"
                         angleZ = 0
                     elif event.key == pygame.K_c:
-                        #print "angleZ: +1"
                         angleZ = 1
 
+                    elif event.key == pygame.K_r:
+                        self.r1 += -0.1
+                        if self.r1 <= 0.1:
+                            self.r1 = 0.1
+                        self.vertices = generateSphere3dPoints(self.numberVertice, self.r1, self.r2, self.r3)
+                    elif event.key == pygame.K_t:
+                        self.r1 += 0.1
+                        self.vertices = generateSphere3dPoints(self.numberVertice, self.r1, self.r2, self.r3)
+
+                    elif event.key == pygame.K_f:
+                        self.r2 += -0.1
+                        if self.r2 <= 0.1:
+                            self.r2 = 0.1
+                        self.vertices = generateSphere3dPoints(self.numberVertice, self.r1, self.r2, self.r3)
+                    elif event.key == pygame.K_g:
+                        self.r2 += 0.1
+                        self.vertices = generateSphere3dPoints(self.numberVertice, self.r1, self.r2, self.r3)
+
+                    elif event.key == pygame.K_v:
+                        self.r3 += -0.1
+                        if self.r3 <= 0.1:
+                            self.r3 = 0.1
+                        self.vertices = generateSphere3dPoints(self.numberVertice, self.r1, self.r2, self.r3)
+                    elif event.key == pygame.K_b:
+                        self.r3 += 0.1
+                        self.vertices = generateSphere3dPoints(self.numberVertice, self.r1, self.r2, self.r3)
+
                     elif event.key == pygame.K_DOWN:
-                        #print "3d points: " + str(self.numberVertice)
                         self.numberVertice -= 10
                         if self.numberVertice <= 0:
                             self.numberVertice = 10
                         self.vertices = generateSphere3dPoints(self.numberVertice, self.r1, self.r2, self.r3)
                     elif event.key == pygame.K_UP:
-                        #print "3d points: " + str(self.numberVertice)
                         self.numberVertice += 10
                         self.vertices = generateSphere3dPoints(self.numberVertice, self.r1, self.r2, self.r3)
 
@@ -185,12 +201,14 @@ class Simulation:
             self.angleY += angleY
             self.angleZ += angleZ
 
+            sizeText = font.render("Size sphere: x=" + str(self.r1) + " y=" + str(self.r2) + " z=" + str(self.r3), True, ( 255, 0, 0))
+            self.screen.blit(sizeText, [10, 10])
 
             rotationText = font.render("Angle rotation direction: x=" + str(angleX) + " y=" + str(angleY) + " z=" + str(angleZ), True, ( 255, 0, 0))
-            self.screen.blit(rotationText, [10, 10])
+            self.screen.blit(rotationText, [10, 30])
 
             pointText = font.render("# of 3d points: " + str(self.numberVertice), True, ( 255, 0, 0))
-            self.screen.blit(pointText, [10, 30])
+            self.screen.blit(pointText, [10, 50])
 
             pygame.display.flip()
  
