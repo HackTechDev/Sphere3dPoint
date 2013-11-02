@@ -106,8 +106,10 @@ class Simulation:
         pygame.display.set_caption("Simulation of sphere 3d point rotation ")
  
         self.clock = pygame.time.Clock()
- 
-        self.vertices = generateSphere3dPoints(200)
+    
+        self.numberVertice = 10 
+
+        self.vertices = generateSphere3dPoints(self.numberVertice)
 
         self.angleX, self.angleY, self.angleZ = 0, 0, 0
  
@@ -140,6 +142,16 @@ class Simulation:
                     elif event.key == pygame.K_x:
                         print "angleZ: 1"
                         angleZ = 1
+                    elif event.key == pygame.K_DOWN:
+                        print "3d points: " + str(self.numberVertice)
+                        self.numberVertice -= 10
+                        if self.numberVertice <= 0:
+                            self.numberVertice = 10
+                        self.vertices = generateSphere3dPoints(self.numberVertice)
+                    elif event.key == pygame.K_UP:
+                        print "3d points: " + str(self.numberVertice)
+                        self.numberVertice += 10
+                        self.vertices = generateSphere3dPoints(self.numberVertice)
 
             self.clock.tick(50)
             self.screen.fill((0, 0, 0))
