@@ -3,9 +3,9 @@ Sphere 3d point rotation
   
 Keys:  
  
-R and T = Change the x size
-F and G = Change the y size
-V and B = Change the z size
+R and T = Change the x size  
+F and G = Change the y size  
+V and B = Change the z size  
  
 A = -x rotation  
 Z = Disable x rotation  
