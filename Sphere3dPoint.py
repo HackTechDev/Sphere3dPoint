@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import sys, math, pygame
 
 # Generate all points of a sphere
