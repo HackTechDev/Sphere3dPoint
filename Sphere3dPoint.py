@@ -123,7 +123,7 @@ class Simulation:
 
         sizePoint = 4
 
-        font = pygame.font.Font(None, 25)
+        font = pygame.font.Font(os.path.join('data', 'freesansbold.ttf'), 25)
 
         backFace = False
 

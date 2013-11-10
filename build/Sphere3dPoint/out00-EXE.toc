@@ -1,0 +1,9 @@
+('/home/solomonkane/PYTHON/Sphere3dPoint/dist/Sphere3dPoint',
+ True,
+ False,
+ None,
+ None,
+ [],
+ None,
+ False,
+ 1384091398)
