@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import sys, math, pygame
+import os, sys, math, pygame
 
 # Generate all points of a sphere
 # n = Number of points
